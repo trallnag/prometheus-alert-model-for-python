@@ -1,0 +1,56 @@
+{
+  "receiver": "generic",
+  "status": "firing",
+  "alerts": [
+    {
+      "status": "firing",
+      "labels": {
+        "alertname": "WhatEver",
+        "foo_bar_qux": "foo_moo_zoom",
+        "mu": "sik",
+        "severity": "warning"
+      },
+      "annotations": {
+        "description": "A Prometheus job has disappe",
+        "summary": "Prometheus job missing (instance )"
+      },
+      "startsAt": "2020-11-03T17:51:36.14925565Z",
+      "endsAt": "0001-01-01T00:00:00Z",
+      "generatorURL": "http://9e6d80bea9ef:9090/graph?g0.",
+      "fingerprint": "d57ff78af6ac95e8"
+    },
+    {
+      "status": "firing",
+      "labels": {
+        "alertname": "WhatEver",
+        "foo_bar_qux": "foo_moo_zoom",
+        "severity": "warning"
+      },
+      "annotations": {
+        "description": "A Prometheus job has disappe",
+        "summary": "Prometheus job missing (instance )",
+        "this": "isspecific"
+      },
+      "startsAt": "2020-11-03T17:51:36.14925565Z",
+      "endsAt": "0001-01-01T00:00:00Z",
+      "generatorURL": "http://9e6d80bea9ef:9090/graph?g0.",
+      "fingerprint": "d57ff78af6ac95e8"
+    }
+  ],
+  "groupLabels": {
+    "alertname": "WhatEver"
+  },
+  "commonLabels": {
+    "alertname": "WhatEver",
+    "foo_bar_qux": "foo_moo_zoom",
+    "severity": "warning"
+  },
+  "commonAnnotations": {
+    "description": "A Prometheus job has disappeareS: map[]",
+    "summary": "Prometheus job missing (instance )"
+  },
+  "externalURL": "http://1217896f2a1d:9093",
+  "version": "4",
+  "groupKey": "{}:{alertname=\"WhatEver\"}",
+  "truncatedAlerts": 0
+} 

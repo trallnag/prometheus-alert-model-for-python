@@ -1,0 +1,37 @@
+[tool.poetry]
+name = "prometheus-alert-model"
+version = "0.1.0"
+description = "Pydantic model of the Prometheus Alertmanager alert payload"
+authors = ["Tim Schwenke <tim.and.trallnag+code@gmail.com>"]
+license = "Apache-2.0"
+readme = "README.md"
+repository = "https://github.com/trallnag/prometheus-alert-model-for-python"
+keywords = ["prometheus", "alertmanager", "alerting", "pydantic"]
+
+[tool.poetry.dependencies]
+python = "3.7"
+pydantic = "^1.7.2"
+
+[tool.poetry.dev-dependencies]
+pytest = "^6.1.0"
+pytest-cov = "^2.10"
+rope = "^0.18"
+isort = "^5.6"
+devtools = "^0.6.0"
+pdoc3 = "^0.9.2"
+flake8 = "^3.8.4"
+black = "^20.8b1"
+
+[tool.black]
+line-length = 90
+
+[tool.pytest.ini_options]
+minversion = "6.1"
+markers = [
+    "slow: mark a test as slow in execution"
+]
+log_format = "%(message)s"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
