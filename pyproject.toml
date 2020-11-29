@@ -9,7 +9,7 @@ repository = "https://github.com/trallnag/prometheus-alert-model-for-python"
 keywords = ["prometheus", "alertmanager", "alerting", "pydantic"]
 
 [tool.poetry.dependencies]
-python = "3.7"
+python = "^3.7"
 pydantic = "^1.7.2"
 typing-extensions = "^3.7.4"  # Necessary due to Python 3.7 support.
 
