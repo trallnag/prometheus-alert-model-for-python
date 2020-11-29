@@ -91,7 +91,7 @@ class AlertGroup(BaseModel):
         """
 
         target = {}
-        
+
         if annotations:
             target["annotations"] = annotations
 
@@ -112,14 +112,54 @@ class AlertGroup(BaseModel):
 
     # --------------------------------------------------------------------------
 
+    def remove_re(
+        self,
+        annotations: Optional[Union[List[Union[Pattern, str]], Pattern, str]] = None,
+        labels: Optional[Union[List[Union[Pattern, str]], Pattern, str]] = None,
+    ) -> None:
+        """Removes annotations and labels by matching names with regex.
+
+        Args:
+            annotations (Union[List[Union[Pattern, str]], Pattern, str], optional):
+                Patterns that should be matched unanchored against annotations.
+                If a `str` is given instead of a `Pattern`, the `str` will be
+                compiled to `Pattern`. Defaults to `None`.
+            labels (Union[List[Union[Pattern, str]], Pattern, str], optional):
+                Patterns that should be matched unanchored against labels.
+                If a `str` is given instead of a `Pattern`, the `str` will be
+                compiled to `Pattern`. Defaults to `None`.
+        """
+
+        target = {}
+
+        if annotations:
+            target["annotations"] = annotations
+
         if labels:
-            if isinstance(labels, str):
-                labels = (labels,)
-            for label in labels:
-                self.common_labels.pop(label, None)
-                for alert in self.alerts:
-                    alert.labels.pop(label, None)
-                    alert.specific_labels.pop(label, None)
+            target["labels"] = labels
 
+        if target:
+            for target, patterns in target.items():
 
-# ==============================================================================
+                if isinstance(patterns, str) or isinstance(patterns, Pattern):
+                    patterns = [patterns]
+
+                for i in range(len(patterns)):
+                    if isinstance(patterns[i], str):
+                        print("hello")
+                        patterns[i] = compile(patterns[i])
+
+                for pattern in patterns:
+                    elements = self.__dict__[f"common_{target}"]
+
+                    for name_to_pop in {e for e in elements if pattern.search(e)}:
+                        elements.pop(name_to_pop, None)
+
+                    for alert in self.alerts:
+                        elements = alert.__dict__[target]
+                        for name_to_pop in {e for e in elements if pattern.search(e)}:
+                            elements.pop(name_to_pop, None)
+
+            self.update_specific()
+
+    # --------------------------------------------------------------------------
