@@ -1,4 +1,5 @@
-"""Copyright © 2020 Tim Schwenke - Licensed under the Apache License 2.0"""
+# Copyright © 2020 Tim Schwenke <tim.and.trallnag+code@gmail.com>
+# Licensed under Apache License 2.0 <http://www.apache.org/licenses/LICENSE-2.0>
 
 from datetime import datetime
 from typing import Dict, List, Optional, Sequence
