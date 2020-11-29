@@ -1,3 +1,4 @@
+import os
 import pathlib
 import shutil
 import sys
@@ -20,7 +21,7 @@ class Helpers:
     """
 
     separator = "-" * 80
-    should_debug = False
+    should_debug = True
 
     @staticmethod
     def wrapped_debug(element, description: Optional[str] = None) -> None:
@@ -45,9 +46,18 @@ FILE = __file__
 
 @pytest.fixture
 def data_path(tmp_path):
-    shutil.copytree(
-        pathlib.Path(FILE).parent.joinpath("data"), tmp_path, dirs_exist_ok=True
-    )
+    source = pathlib.Path(FILE).parent.joinpath("data")
+    destination = tmp_path
+
+    for item in os.listdir(source):
+        s = os.path.join(source, item)
+        print(s)
+        d = os.path.join(destination, item)
+        print(d)
+        if os.path.isdir(s):
+            shutil.copytree(s, d, symlinks=False, ignore=None)
+        else:
+            shutil.copy2(s, d)
 
     return tmp_path
 
