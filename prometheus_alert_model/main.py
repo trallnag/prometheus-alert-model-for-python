@@ -2,11 +2,10 @@
 # Licensed under Apache License 2.0 <http://www.apache.org/licenses/LICENSE-2.0>
 
 from datetime import datetime
-from typing import Dict, List, Optional, Sequence
+from re import Pattern, compile
+from typing import Dict, List, Optional, Union
 
 from pydantic import BaseModel, Field, validator
-
-# ==============================================================================
 
 
 class Alert(BaseModel):
@@ -59,6 +58,8 @@ class AlertGroup(BaseModel):
         extra = "allow"
         allow_population_by_field_name = True
 
+    # --------------------------------------------------------------------------
+
     def update_specific(self) -> None:
         """Updates specific labels and annotations."""
 
@@ -72,6 +73,53 @@ class AlertGroup(BaseModel):
                 name: alert.labels[name]
                 for name in set(alert.labels) - set(self.common_labels)
             }
+
+    # --------------------------------------------------------------------------
+
+    def remove(
+        self,
+        annotations: Optional[Union[List[str], str]] = None,
+        labels: Optional[Union[List[str], str]] = None,
+    ) -> None:
+        """Removes annotations and labels by name.
+
+        Args:
+            annotations (Union[List[str], str], optional): Names of
+                annotations to remove. Defaults to `None`.
+            labels (Union[List[str], str], optional): Names of labels to
+                remove. Defaults to `None`.
+        """
+
+        target = {}
+        
+        if annotations:
+            target["annotations"] = annotations
+
+        if labels:
+            target["labels"] = labels
+
+        for target, names_to_pop in target.items():
+
+            if isinstance(names_to_pop, str):
+                names_to_pop = [names_to_pop]
+
+            for name_to_pop in names_to_pop:
+                self.__dict__[f"common_{target}"].pop(name_to_pop, None)
+
+                for alert in self.alerts:
+                    alert.__dict__[target].pop(name_to_pop, None)
+                    alert.__dict__[f"specific_{target}"].pop(name_to_pop, None)
+
+    # --------------------------------------------------------------------------
+
+        if labels:
+            if isinstance(labels, str):
+                labels = (labels,)
+            for label in labels:
+                self.common_labels.pop(label, None)
+                for alert in self.alerts:
+                    alert.labels.pop(label, None)
+                    alert.specific_labels.pop(label, None)
 
 
 # ==============================================================================
