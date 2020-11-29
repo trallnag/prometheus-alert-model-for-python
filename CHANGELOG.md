@@ -9,4 +9,12 @@ specification.
 
 ## [Unreleased]
 
-* Nothing.
+### Added
+
+- Automatic creation of specific labels and annotations by using Pydantic
+    validator during creation of `AlertGroup`.
+- Method `update_specific` that updates specific labels and annotations in case
+    something is changed in the alert.
+- Action `remve` allows you to remove labels and annotations by name.
+- Action `remove_re` allows you to remove labels and annotations that match
+    regex expressions. Different types of parameters are supported.
