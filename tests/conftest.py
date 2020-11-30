@@ -4,7 +4,6 @@
 import os
 import pathlib
 import shutil
-import sys
 from typing import Optional
 
 import pytest

@@ -90,22 +90,19 @@ class AlertGroup(BaseModel):
                 remove. Defaults to `None`.
         """
 
-        target = {}
+        targets: Dict[str, Union[List[str], str]] = {}
 
         if annotations:
-            target["annotations"] = annotations
+            targets["annotations"] = annotations
 
         if labels:
-            target["labels"] = labels
+            targets["labels"] = labels
 
-        for target, names_to_pop in target.items():
-
-            if isinstance(names_to_pop, str):
-                names_to_pop = [names_to_pop]
+        for target, values in targets.items():
+            names_to_pop: List[str] = [values] if isinstance(values, str) else values
 
             for name_to_pop in names_to_pop:
                 self.__dict__[f"common_{target}"].pop(name_to_pop, None)
-
                 for alert in self.alerts:
                     alert.__dict__[target].pop(name_to_pop, None)
                     alert.__dict__[f"specific_{target}"].pop(name_to_pop, None)
@@ -130,24 +127,27 @@ class AlertGroup(BaseModel):
                 compiled to `Pattern`. Defaults to `None`.
         """
 
-        target = {}
+        targets: Dict[str, Union[List[Union[Pattern, str]], Pattern, str]] = {}
 
         if annotations:
-            target["annotations"] = annotations
+            targets["annotations"] = annotations
 
         if labels:
-            target["labels"] = labels
+            targets["labels"] = labels
 
-        if target:
-            for target, patterns in target.items():
+        if targets:
+            for target, target_value in targets.items():
 
-                if isinstance(patterns, str) or isinstance(patterns, Pattern):
-                    patterns = [patterns]
-
-                for i in range(len(patterns)):
-                    if isinstance(patterns[i], str):
-                        print("hello")
-                        patterns[i] = compile(patterns[i])
+                patterns: List[Pattern]
+                if isinstance(target_value, str):
+                    patterns = [compile(target_value)]
+                elif isinstance(target_value, Pattern):
+                    patterns = [target_value]
+                else:
+                    patterns = [
+                        compile(pattern) if isinstance(pattern, str) else pattern
+                        for pattern in target_value
+                    ]
 
                 for pattern in patterns:
                     elements = self.__dict__[f"common_{target}"]
