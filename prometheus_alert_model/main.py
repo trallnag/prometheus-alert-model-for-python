@@ -3,9 +3,10 @@
 
 from datetime import datetime
 from re import Pattern, compile
-from typing import Dict, List, Optional, Union
+from typing import Dict, List, Optional, Sequence, Union
 
 from pydantic import BaseModel, Field, validator
+from typing_extensions import Literal
 
 
 class Alert(BaseModel):
@@ -60,18 +61,22 @@ class AlertGroup(BaseModel):
 
     # --------------------------------------------------------------------------
 
-    def update_specific(self) -> None:
+    def update_specific(
+        self,
+        targets: Union[
+            Sequence[Literal["annotations", "labels"]], Literal["annotations", "labels"]
+        ] = ["annotations", "labels"],
+    ) -> None:
         """Updates specific labels and annotations."""
 
-        for alert in self.alerts:
-            alert.specific_annotations = {
-                name: alert.annotations[name]
-                for name in set(alert.annotations) - set(self.common_annotations)
-            }
+        targets = (targets,) if isinstance(targets, str) else targets
 
-            alert.specific_labels = {
-                name: alert.labels[name]
-                for name in set(alert.labels) - set(self.common_labels)
+        for target in targets:
+        for alert in self.alerts:
+                alert.__dict__[f"specific_{target}"] = {
+                    name: alert.__dict__[target][name]
+                    for name in set(alert.__dict__[target])
+                    - set(self.__dict__[f"common_{target}"])
             }
 
     # --------------------------------------------------------------------------
@@ -127,7 +132,10 @@ class AlertGroup(BaseModel):
                 compiled to `Pattern`. Defaults to `None`.
         """
 
-        targets: Dict[str, Union[List[Union[Pattern, str]], Pattern, str]] = {}
+        targets: Dict[
+            Literal["annotations", "labels"],
+            Union[List[Union[Pattern, str]], Pattern, str],
+        ] = {}
 
         if annotations:
             targets["annotations"] = annotations
@@ -160,6 +168,9 @@ class AlertGroup(BaseModel):
                         for name_to_pop in {e for e in elements if pattern.search(e)}:
                             elements.pop(name_to_pop, None)
 
-            self.update_specific()
+            self.update_specific(list(targets.keys()))
+
+    # --------------------------------------------------------------------------
+
 
     # --------------------------------------------------------------------------
