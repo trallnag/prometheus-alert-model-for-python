@@ -18,3 +18,5 @@ specification.
 - Action `remve` allows you to remove labels and annotations by name.
 - Action `remove_re` allows you to remove labels and annotations that match
     regex expressions. Different types of parameters are supported.
+- Action `add` allows you to add missing labels and annoations. If a label or
+    annotation already exists it will not be overriden.

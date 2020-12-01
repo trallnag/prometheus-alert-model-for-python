@@ -72,12 +72,12 @@ class AlertGroup(BaseModel):
         targets = (targets,) if isinstance(targets, str) else targets
 
         for target in targets:
-        for alert in self.alerts:
+            for alert in self.alerts:
                 alert.__dict__[f"specific_{target}"] = {
                     name: alert.__dict__[target][name]
                     for name in set(alert.__dict__[target])
                     - set(self.__dict__[f"common_{target}"])
-            }
+                }
 
     # --------------------------------------------------------------------------
 
@@ -172,5 +172,45 @@ class AlertGroup(BaseModel):
 
     # --------------------------------------------------------------------------
 
+    def add(
+        self,
+        annotations: Optional[Dict[str, str]] = None,
+        labels: Optional[Dict[str, str]] = None,
+    ) -> None:
+        """Adds annotations and labels but skips existing elements.
+
+        Args:
+            annotations (Optional[Dict[str, str]], optional): `Dict` of
+                annotations to add. Defaults to `None`.
+            labels (Optional[Dict[str, str]], optional): `Dict` of labels to add.
+                Defaults to `None`.
+        """
+
+        targets: Dict[Literal["annotations", "labels"], Dict[str, str]] = {}
+
+        if annotations:
+            targets["annotations"] = annotations
+
+        if labels:
+            targets["labels"] = labels
+
+        if targets:
+            for target, items_to_add in targets.items():
+                for name, value in items_to_add.items():
+                    unique_values = set()
+
+                    for alert in self.alerts:
+                        elements = alert.__dict__[target]
+
+                        if name not in elements:
+                            elements[name] = value
+                            unique_values.add(value)
+                        else:
+                            unique_values.add(elements[name])
+
+                    if len(unique_values) == 1 and value in unique_values:
+                        self.__dict__[f"common_{target}"][name] = value
+
+            self.update_specific(list(targets.keys()))
 
     # --------------------------------------------------------------------------
