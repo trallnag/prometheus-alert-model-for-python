@@ -18,7 +18,7 @@ docs () {
 
 lint () {
     poetry run flake8 --config .flake8 --statistics
-    mypy ${project_name} --allow-redefinition
+    poetry run mypy ${project_name} --allow-redefinition
 }
 
 requirements () {
