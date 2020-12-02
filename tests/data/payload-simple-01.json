@@ -46,7 +46,7 @@
     "severity": "warning"
   },
   "commonAnnotations": {
-    "description": "A Prometheus job has disappeareS: map[]",
+    "description": "A Prometheus job has disappe",
     "summary": "Prometheus job missing (instance )"
   },
   "externalURL": "http://1217896f2a1d:9093",

@@ -85,8 +85,7 @@ class AlertGroup(BaseModel):
         for alert in self.alerts:
             alert.specific_annotations = {
                 name: alert.annotations[name]
-                for name in set(alert.annotations)
-                - set(self.common_annotations)
+                for name in set(alert.annotations) - set(self.common_annotations)
             }
 
     def update_specific_labels(self) -> None:
@@ -95,8 +94,7 @@ class AlertGroup(BaseModel):
         for alert in self.alerts:
             alert.specific_labels = {
                 name: alert.labels[name]
-                for name in set(alert.labels)
-                - set(self.common_labels)
+                for name in set(alert.labels) - set(self.common_labels)
             }
 
     # --------------------------------------------------------------------------
@@ -230,6 +228,39 @@ class AlertGroup(BaseModel):
 
                     if len(unique_values) == 1 and value in unique_values:
                         self.__dict__[f"common_{target}"][name] = value
+
+            self.update_specific_elements(list(targets.keys()))
+
+    # --------------------------------------------------------------------------
+
+    def override(
+        self,
+        annotations: Optional[Dict[str, str]] = None,
+        labels: Optional[Dict[str, str]] = None,
+    ) -> None:
+        """Adds annotations and labels and overrides existing elements.
+
+        Args:
+            annotations (Optional[Dict[str, str]], optional): `Dict` of
+                annotations to override with. Defaults to `None`.
+            labels (Optional[Dict[str, str]], optional): `Dict` of labels to
+                override with. Defaults to `None`.
+        """
+
+        targets: Dict[Literal["annotations", "labels"], Dict[str, str]] = {}
+
+        if annotations:
+            targets["annotations"] = annotations
+
+        if labels:
+            targets["labels"] = labels
+
+        if targets:
+            for target, items_to_override in targets.items():
+                for name, value in items_to_override.items():
+                    self.__dict__[f"common_{target}"][name] = value
+                    for alert in self.alerts:
+                        alert.__dict__[target][name] = value
 
             self.update_specific_elements(list(targets.keys()))
 

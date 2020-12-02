@@ -20,3 +20,5 @@ specification.
     regex expressions. Different types of parameters are supported.
 - Action `add` allows you to add missing labels and annoations. If a label or
     annotation already exists it will not be overriden.
+- Action `override` allows you to add and override labels and annotations.
+    This makes it different from `add`.
