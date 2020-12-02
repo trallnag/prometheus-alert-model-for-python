@@ -61,7 +61,7 @@ class AlertGroup(BaseModel):
 
     # --------------------------------------------------------------------------
 
-    def update_specific(
+    def update_specific_elements(
         self,
         targets: Union[
             Sequence[Literal["annotations", "labels"]], Literal["annotations", "labels"]
@@ -78,6 +78,26 @@ class AlertGroup(BaseModel):
                     for name in set(alert.__dict__[target])
                     - set(self.__dict__[f"common_{target}"])
                 }
+
+    def update_specific_annotations(self) -> None:
+        """Updates specific annotations."""
+
+        for alert in self.alerts:
+            alert.specific_annotations = {
+                name: alert.annotations[name]
+                for name in set(alert.annotations)
+                - set(self.common_annotations)
+            }
+
+    def update_specific_labels(self) -> None:
+        """Updates specific labels."""
+
+        for alert in self.alerts:
+            alert.specific_labels = {
+                name: alert.labels[name]
+                for name in set(alert.labels)
+                - set(self.common_labels)
+            }
 
     # --------------------------------------------------------------------------
 
@@ -168,7 +188,7 @@ class AlertGroup(BaseModel):
                         for name_to_pop in {e for e in elements if pattern.search(e)}:
                             elements.pop(name_to_pop, None)
 
-            self.update_specific(list(targets.keys()))
+            self.update_specific_elements(list(targets.keys()))
 
     # --------------------------------------------------------------------------
 
@@ -211,6 +231,6 @@ class AlertGroup(BaseModel):
                     if len(unique_values) == 1 and value in unique_values:
                         self.__dict__[f"common_{target}"][name] = value
 
-            self.update_specific(list(targets.keys()))
+            self.update_specific_elements(list(targets.keys()))
 
     # --------------------------------------------------------------------------

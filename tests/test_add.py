@@ -44,7 +44,7 @@ def test_add_single_annotation_specific(helpers, data_path):
     helpers.wrapped_debug(alert_group, "original")
 
     alert_group.alerts[1].annotations["hallo"] = "bump"
-    alert_group.update_specific(targets="annotations")
+    alert_group.update_specific_elements(targets="annotations")
     helpers.wrapped_debug(alert_group, "after adding hallo bump to alert1")
 
     assert alert_group.alerts[0].annotations == {
