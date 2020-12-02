@@ -5,7 +5,9 @@ project_name="prometheus_alert_model"
 # ==============================================================================
 # Misc
 
-docs () {
+_docs () {
+    echo "Create docs"
+
     tmp_dir=/tmp/docs
     rm -rf /tmp/docs
     mkdir -p /tmp/docs
@@ -16,12 +18,17 @@ docs () {
     rm -rf /tmp/docs
 }
 
-lint () {
+_lint () {
+    echo "Lint project"
+
     poetry run flake8 --config .flake8 --statistics
     poetry run mypy ${project_name} --allow-redefinition
 }
 
-requirements () {
+_requirements () {
+    echo "Create requirements file"
+
+    rm -rf "requirements.txt"
     poetry export \
         --format "requirements.txt" \
         --output "requirements.txt" \
@@ -31,38 +38,46 @@ requirements () {
 # ==============================================================================
 # Format
 
-format_style () {
+_format_style () {
+    echo "Format style"
+
     poetry run black .    
 }
 
-format_imports () {
+_format_imports () {
+    echo "Format imports"
+
     poetry run isort --profile black .
 }
 
-format () {
-    format_style
-    format_imports
+_format () {
+    _format_style
+    _format_imports
 }
 
 # ==============================================================================
 # Test
 
-test_not_slow () {
+_test_not_slow () {
+    echo "Run non-slow tests with Pytest"
+
     poetry run pytest -m "not slow"
 }
 
-test_slow () {
+_test_slow () {
+    echo "Run slow tests with Pytest"
+    
     poetry run pytest -m "slow"
 }
 
-test () {
-    test_not_slow
-    test_slow
+_test () {
+    _test_not_slow
+    _test_slow
 }
 
 # ==============================================================================
 
-help () {
+_help () {
     cat << EOF
 docs
 lint
@@ -76,7 +91,17 @@ test
 EOF
 }
 
-# This lets you do ./run.sh build foo bar at the command line.  The autocomplete
-# scans for functions in .sh files and fills them in as the first arg.
-
-"$@"
+for arg in "$@"
+do
+    if  [ $arg = "help" ]; then _help
+    elif [ $arg = "docs" ]; then _docs
+    elif [ $arg = "lint" ]; then _lint
+    elif [ $arg = "requirements" ]; then _requirements
+    elif [ $arg = "format_style" ]; then _format_style
+    elif [ $arg = "format_imports" ]; then _format_imports
+    elif [ $arg = "format" ]; then _format
+    elif [ $arg = "test_not_slow" ]; then _test_not_slow
+    elif [ $arg = "test_slow" ]; then _test_slow
+    elif [ $arg = "test" ]; then _test
+    fi
+done
