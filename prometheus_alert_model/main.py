@@ -265,3 +265,42 @@ class AlertGroup(BaseModel):
             self.update_specific_elements(list(targets.keys()))
 
     # --------------------------------------------------------------------------
+
+    def add_prefix(
+        self,
+        annotations: Optional[Dict[str, str]] = None,
+        labels: Optional[Dict[str, str]] = None,
+    ) -> None:
+        """Adds prefix to annotations and labels.
+
+        Args:
+            annotations (Optional[Dict[str, str]], optional): Dictionary with
+                annotation names that should be updated and values representing
+                the to be added prefix. Defaults to `None`.
+            labels (Optional[Dict[str, str]], optional): Dictionary with
+                labels names that should be updated and values representing
+                the to be added prefix. Defaults to `None`.
+        """
+
+        targets: Dict[Literal["annotations", "labels"], Dict[str, str]] = {}
+
+        if annotations:
+            targets["annotations"] = annotations
+
+        if labels:
+            targets["labels"] = labels
+
+        if targets:
+            for target, prefixes_to_add in targets.items():
+                for name, prefix in prefixes_to_add.items():
+                    self.__dict__[f"common_{target}"][name] = (
+                        prefix + self.__dict__[f"common_{target}"][name]
+                    )
+                    for alert in self.alerts:
+                        alert.__dict__[target][name] = (
+                            prefix + alert.__dict__[target][name]
+                        )
+
+            self.update_specific_elements(list(targets.keys()))
+
+    # --------------------------------------------------------------------------

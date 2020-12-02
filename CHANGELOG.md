@@ -22,3 +22,4 @@ specification.
     annotation already exists it will not be overriden.
 - Action `override` allows you to add and override labels and annotations.
     This makes it different from `add`.
+- Action `add_prefix` allows to add prefixes to annotations and labels.
