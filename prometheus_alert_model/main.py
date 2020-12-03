@@ -18,8 +18,22 @@ class Alert(BaseModel):
     annotations: Dict[str, str]
     labels: Dict[str, str]
 
-    specific_annotations: Dict[str, str] = {}
-    specific_labels: Dict[str, str] = {}
+    specific_annotations: Dict[str, str] = Field(
+        default={},
+        description=(
+            "Annotations that are specific to this alert in the context of the "
+            "whole alert group. Does not have to be provided in the payload "
+            "and is automatically calculated."
+        ),
+    )
+    specific_labels: Dict[str, str] = Field(
+        default={},
+        description=(
+            "Labels that are specific to this alert in the context of the "
+            "whole alert group. Does not have to be provided in the payload "
+            "and is automatically calculated."
+        ),
+    )
 
     class Config:
         extra = "allow"
