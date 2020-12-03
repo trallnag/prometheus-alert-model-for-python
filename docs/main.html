@@ -882,7 +882,7 @@ def check_specific(cls, v, values):
 <h3>Methods</h3>
 <dl>
 <dt id="prometheus_alert_model.main.AlertGroup.add"><code class="name flex">
-<span>def <span class="ident">add</span></span>(<span>self, annotations: Union[Dict[str, str], NoneType] = None, labels: Union[Dict[str, str], NoneType] = None) ‑> NoneType</span>
+<span>def <span class="ident">add</span></span>(<span>self, annotations: Optional[Dict[str, str]] = None, labels: Optional[Dict[str, str]] = None) ‑> NoneType</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Adds annotations and labels but skips existing elements.</p>
@@ -942,7 +942,7 @@ Defaults to <code>None</code>.</dd>
 </details>
 </dd>
 <dt id="prometheus_alert_model.main.AlertGroup.add_prefix"><code class="name flex">
-<span>def <span class="ident">add_prefix</span></span>(<span>self, annotations: Union[Dict[str, str], NoneType] = None, labels: Union[Dict[str, str], NoneType] = None) ‑> NoneType</span>
+<span>def <span class="ident">add_prefix</span></span>(<span>self, annotations: Optional[Dict[str, str]] = None, labels: Optional[Dict[str, str]] = None) ‑> NoneType</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Adds prefix to annotations and labels.</p>
@@ -1000,7 +1000,7 @@ the to be added prefix. Defaults to <code>None</code>.</dd>
 </details>
 </dd>
 <dt id="prometheus_alert_model.main.AlertGroup.override"><code class="name flex">
-<span>def <span class="ident">override</span></span>(<span>self, annotations: Union[Dict[str, str], NoneType] = None, labels: Union[Dict[str, str], NoneType] = None) ‑> NoneType</span>
+<span>def <span class="ident">override</span></span>(<span>self, annotations: Optional[Dict[str, str]] = None, labels: Optional[Dict[str, str]] = None) ‑> NoneType</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Adds annotations and labels and overrides existing elements.</p>
@@ -1190,7 +1190,7 @@ compiled to <code>Pattern</code>. Defaults to <code>None</code>.</p></div>
 </details>
 </dd>
 <dt id="prometheus_alert_model.main.AlertGroup.update_common_elements"><code class="name flex">
-<span>def <span class="ident">update_common_elements</span></span>(<span>self, targets: Union[Sequence[typing_extensions.Literal['annotations', 'labels']], typing_extensions.Literal['annotations', 'labels']] = ['annotations', 'labels']) ‑> NoneType</span>
+<span>def <span class="ident">update_common_elements</span></span>(<span>self, targets: Union[Sequence[Literal['annotations', 'labels']], Literal['annotations', 'labels']] = ['annotations', 'labels']) ‑> NoneType</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Updates common annotations and labels.</p>
@@ -1255,7 +1255,7 @@ Targets that should be updated. Defaults to ["annotations", "labels"].</p></div>
 </details>
 </dd>
 <dt id="prometheus_alert_model.main.AlertGroup.update_specific_elements"><code class="name flex">
-<span>def <span class="ident">update_specific_elements</span></span>(<span>self, targets: Union[Sequence[typing_extensions.Literal['annotations', 'labels']], typing_extensions.Literal['annotations', 'labels']] = ['annotations', 'labels']) ‑> NoneType</span>
+<span>def <span class="ident">update_specific_elements</span></span>(<span>self, targets: Union[Sequence[Literal['annotations', 'labels']], Literal['annotations', 'labels']] = ['annotations', 'labels']) ‑> NoneType</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Updates specific labels and annotations.</p></div>
