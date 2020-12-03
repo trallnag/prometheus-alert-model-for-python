@@ -79,17 +79,22 @@ _test () {
 
 _help () {
     cat << EOF
-docs
-lint
-requirements
-format_style
-format_imports
-format
-test_not_slow
-test_slow
-test
+Functions you can use like this 'bash run.sh <function name>':
+    docs
+    lint
+    requirements
+    format_style
+    format_imports
+    format
+    test_not_slow
+    test_slow
+    test
 EOF
 }
+
+if [[ $# -eq 0 ]] ; then
+    _help
+fi
 
 for arg in "$@"
 do

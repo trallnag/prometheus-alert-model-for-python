@@ -1,0 +1,1374 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+<meta name="generator" content="pdoc 0.9.2" />
+<title>prometheus_alert_model.main API documentation</title>
+<meta name="description" content="" />
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/typography.min.css" integrity="sha256-7l/o7C8jubJiy74VsKTidCy1yBkRtiUGbVkYBylBqUg=" crossorigin>
+<link rel="stylesheet preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/github.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:30px;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em .5em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.item .name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul{padding-left:1.5em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js" integrity="sha256-Uv3H6lx7dJmRfRvH8TH6kJD1TSK1aFcwgx+mdg3epi8=" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => hljs.initHighlighting())</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>prometheus_alert_model.main</code></h1>
+</header>
+<section id="section-intro">
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python"># Copyright © 2020 Tim Schwenke &lt;tim.and.trallnag+code@gmail.com&gt;
+# Licensed under Apache License 2.0 &lt;http://www.apache.org/licenses/LICENSE-2.0&gt;
+
+from datetime import datetime
+from re import Pattern, compile
+from typing import Dict, List, Optional, Sequence, Union
+
+from pydantic import BaseModel, Field, validator
+from typing_extensions import Literal
+
+from .utils import intersect
+
+
+class Alert(BaseModel):
+    fingerprint: str
+    status: str
+    starts_at: datetime = Field(alias=&#34;startsAt&#34;)
+    ends_at: datetime = Field(alias=&#34;endsAt&#34;)
+    generator_url: str = Field(alias=&#34;generatorURL&#34;)
+    annotations: Dict[str, str]
+    labels: Dict[str, str]
+
+    specific_annotations: Dict[str, str] = Field(
+        default={},
+        description=(
+            &#34;Annotations that are specific to this alert in the context of the &#34;
+            &#34;whole alert group. Does not have to be provided in the payload &#34;
+            &#34;and is automatically calculated.&#34;
+        ),
+    )
+    specific_labels: Dict[str, str] = Field(
+        default={},
+        description=(
+            &#34;Labels that are specific to this alert in the context of the &#34;
+            &#34;whole alert group. Does not have to be provided in the payload &#34;
+            &#34;and is automatically calculated.&#34;
+        ),
+    )
+
+    class Config:
+        extra = &#34;allow&#34;
+        allow_population_by_field_name = True
+
+
+class AlertGroup(BaseModel):
+    receiver: str
+    status: str
+    external_url: str = Field(alias=&#34;externalURL&#34;)
+    version: str
+    group_key: str = Field(alias=&#34;groupKey&#34;)
+    truncated_alerts: int = Field(alias=&#34;truncatedAlerts&#34;, default=0)
+    group_labels: Dict[str, str] = Field(alias=&#34;groupLabels&#34;)
+    common_annotations: Dict[str, str] = Field(alias=&#34;commonAnnotations&#34;)
+    common_labels: Dict[str, str] = Field(alias=&#34;commonLabels&#34;)
+    alerts: List[Alert]
+
+    @validator(&#34;alerts&#34;)
+    def check_specific(cls, v, values):
+        &#34;&#34;&#34;Updates specific labels and annotations.&#34;&#34;&#34;
+
+        for alert in v:
+            alert.specific_annotations = {
+                name: alert.annotations[name]
+                for name in set(alert.annotations) - set(values.get(&#34;common_annotations&#34;))
+            }
+
+            alert.specific_labels = {
+                name: alert.labels[name]
+                for name in set(alert.labels) - set(values.get(&#34;common_labels&#34;))
+            }
+
+        return v
+
+    class Config:
+        extra = &#34;allow&#34;
+        allow_population_by_field_name = True
+
+    # --------------------------------------------------------------------------
+
+    def update_specific_elements(
+        self,
+        targets: Union[
+            Sequence[Literal[&#34;annotations&#34;, &#34;labels&#34;]], Literal[&#34;annotations&#34;, &#34;labels&#34;]
+        ] = [&#34;annotations&#34;, &#34;labels&#34;],
+    ) -&gt; None:
+        &#34;&#34;&#34;Updates specific labels and annotations.&#34;&#34;&#34;
+
+        targets = (targets,) if isinstance(targets, str) else targets
+
+        for target in targets:
+            for alert in self.alerts:
+                alert.__dict__[f&#34;specific_{target}&#34;] = {
+                    name: alert.__dict__[target][name]
+                    for name in set(alert.__dict__[target])
+                    - set(self.__dict__[f&#34;common_{target}&#34;])
+                }
+
+    def update_specific_annotations(self) -&gt; None:
+        &#34;&#34;&#34;Updates specific annotations.&#34;&#34;&#34;
+
+        for alert in self.alerts:
+            alert.specific_annotations = {
+                name: alert.annotations[name]
+                for name in set(alert.annotations) - set(self.common_annotations)
+            }
+
+    def update_specific_labels(self) -&gt; None:
+        &#34;&#34;&#34;Updates specific labels.&#34;&#34;&#34;
+
+        for alert in self.alerts:
+            alert.specific_labels = {
+                name: alert.labels[name]
+                for name in set(alert.labels) - set(self.common_labels)
+            }
+
+    # --------------------------------------------------------------------------
+
+    def update_common_elements(
+        self,
+        targets: Union[
+            Sequence[Literal[&#34;annotations&#34;, &#34;labels&#34;]], Literal[&#34;annotations&#34;, &#34;labels&#34;]
+        ] = [&#34;annotations&#34;, &#34;labels&#34;],
+    ) -&gt; None:
+        &#34;&#34;&#34;Updates common annotations and labels.
+
+        Args:
+            targets (Union[Sequence[Literal[&#34;annotations&#34;, &#34;labels&#34;]], Literal[&#34;annotations&#34;, &#34;labels&#34;], optional):
+                Targets that should be updated. Defaults to [&#34;annotations&#34;, &#34;labels&#34;].
+        &#34;&#34;&#34;
+
+        for target in targets:
+            self.__dict__[f&#34;common_{target}&#34;] = intersect(
+                [alert.__dict__[target] for alert in self.alerts]
+            )
+
+    def update_common_annotations(self) -&gt; None:
+        &#34;&#34;&#34;Updates common annotations.&#34;&#34;&#34;
+
+        self.common_annotations = intersect([alert.annotations for alert in self.alerts])
+
+    def update_common_labels(self) -&gt; None:
+        &#34;&#34;&#34;Updates common labels.&#34;&#34;&#34;
+
+        self.common_labels = intersect([alert.labels for alert in self.alerts])
+
+    # --------------------------------------------------------------------------
+
+    def remove(
+        self,
+        annotations: Optional[Union[List[str], str]] = None,
+        labels: Optional[Union[List[str], str]] = None,
+    ) -&gt; None:
+        &#34;&#34;&#34;Removes annotations and labels by name.
+
+        Args:
+            annotations (Union[List[str], str], optional): Names of
+                annotations to remove. Defaults to `None`.
+            labels (Union[List[str], str], optional): Names of labels to
+                remove. Defaults to `None`.
+        &#34;&#34;&#34;
+
+        targets: Dict[str, Union[List[str], str]] = {}
+
+        if annotations:
+            targets[&#34;annotations&#34;] = annotations
+
+        if labels:
+            targets[&#34;labels&#34;] = labels
+
+        for target, values in targets.items():
+            names_to_pop: List[str] = [values] if isinstance(values, str) else values
+
+            for name_to_pop in names_to_pop:
+                self.__dict__[f&#34;common_{target}&#34;].pop(name_to_pop, None)
+                for alert in self.alerts:
+                    alert.__dict__[target].pop(name_to_pop, None)
+                    alert.__dict__[f&#34;specific_{target}&#34;].pop(name_to_pop, None)
+
+    # --------------------------------------------------------------------------
+
+    def remove_re(
+        self,
+        annotations: Optional[Union[List[Union[Pattern, str]], Pattern, str]] = None,
+        labels: Optional[Union[List[Union[Pattern, str]], Pattern, str]] = None,
+    ) -&gt; None:
+        &#34;&#34;&#34;Removes annotations and labels by matching names with regex.
+
+        Args:
+            annotations (Union[List[Union[Pattern, str]], Pattern, str], optional):
+                Patterns that should be matched unanchored against annotations.
+                If a `str` is given instead of a `Pattern`, the `str` will be
+                compiled to `Pattern`. Defaults to `None`.
+            labels (Union[List[Union[Pattern, str]], Pattern, str], optional):
+                Patterns that should be matched unanchored against labels.
+                If a `str` is given instead of a `Pattern`, the `str` will be
+                compiled to `Pattern`. Defaults to `None`.
+        &#34;&#34;&#34;
+
+        targets: Dict[
+            Literal[&#34;annotations&#34;, &#34;labels&#34;],
+            Union[List[Union[Pattern, str]], Pattern, str],
+        ] = {}
+
+        if annotations:
+            targets[&#34;annotations&#34;] = annotations
+
+        if labels:
+            targets[&#34;labels&#34;] = labels
+
+        if targets:
+            for target, target_value in targets.items():
+
+                patterns: List[Pattern]
+                if isinstance(target_value, str):
+                    patterns = [compile(target_value)]
+                elif isinstance(target_value, Pattern):
+                    patterns = [target_value]
+                else:
+                    patterns = [
+                        compile(pattern) if isinstance(pattern, str) else pattern
+                        for pattern in target_value
+                    ]
+
+                for pattern in patterns:
+                    elements = self.__dict__[f&#34;common_{target}&#34;]
+
+                    for name_to_pop in {e for e in elements if pattern.search(e)}:
+                        elements.pop(name_to_pop, None)
+
+                    for alert in self.alerts:
+                        elements = alert.__dict__[target]
+                        for name_to_pop in {e for e in elements if pattern.search(e)}:
+                            elements.pop(name_to_pop, None)
+
+            self.update_specific_elements(list(targets.keys()))
+
+    # --------------------------------------------------------------------------
+
+    def add(
+        self,
+        annotations: Optional[Dict[str, str]] = None,
+        labels: Optional[Dict[str, str]] = None,
+    ) -&gt; None:
+        &#34;&#34;&#34;Adds annotations and labels but skips existing elements.
+
+        Args:
+            annotations (Optional[Dict[str, str]], optional): `Dict` of
+                annotations to add. Defaults to `None`.
+            labels (Optional[Dict[str, str]], optional): `Dict` of labels to add.
+                Defaults to `None`.
+        &#34;&#34;&#34;
+
+        targets: Dict[Literal[&#34;annotations&#34;, &#34;labels&#34;], Dict[str, str]] = {}
+
+        if annotations:
+            targets[&#34;annotations&#34;] = annotations
+
+        if labels:
+            targets[&#34;labels&#34;] = labels
+
+        if targets:
+            for target, items_to_add in targets.items():
+                for name, value in items_to_add.items():
+                    unique_values = set()
+
+                    for alert in self.alerts:
+                        elements = alert.__dict__[target]
+
+                        if name not in elements:
+                            elements[name] = value
+                            unique_values.add(value)
+                        else:
+                            unique_values.add(elements[name])
+
+                    if len(unique_values) == 1 and value in unique_values:
+                        self.__dict__[f&#34;common_{target}&#34;][name] = value
+
+            self.update_specific_elements(list(targets.keys()))
+
+    # --------------------------------------------------------------------------
+
+    def override(
+        self,
+        annotations: Optional[Dict[str, str]] = None,
+        labels: Optional[Dict[str, str]] = None,
+    ) -&gt; None:
+        &#34;&#34;&#34;Adds annotations and labels and overrides existing elements.
+
+        Args:
+            annotations (Optional[Dict[str, str]], optional): `Dict` of
+                annotations to override with. Defaults to `None`.
+            labels (Optional[Dict[str, str]], optional): `Dict` of labels to
+                override with. Defaults to `None`.
+        &#34;&#34;&#34;
+
+        targets: Dict[Literal[&#34;annotations&#34;, &#34;labels&#34;], Dict[str, str]] = {}
+
+        if annotations:
+            targets[&#34;annotations&#34;] = annotations
+
+        if labels:
+            targets[&#34;labels&#34;] = labels
+
+        if targets:
+            for target, items_to_override in targets.items():
+                for name, value in items_to_override.items():
+                    self.__dict__[f&#34;common_{target}&#34;][name] = value
+                    for alert in self.alerts:
+                        alert.__dict__[target][name] = value
+
+            self.update_specific_elements(list(targets.keys()))
+
+    # --------------------------------------------------------------------------
+
+    def add_prefix(
+        self,
+        annotations: Optional[Dict[str, str]] = None,
+        labels: Optional[Dict[str, str]] = None,
+    ) -&gt; None:
+        &#34;&#34;&#34;Adds prefix to annotations and labels.
+
+        Args:
+            annotations (Optional[Dict[str, str]], optional): Dictionary with
+                annotation names that should be updated and values representing
+                the to be added prefix. Defaults to `None`.
+            labels (Optional[Dict[str, str]], optional): Dictionary with
+                labels names that should be updated and values representing
+                the to be added prefix. Defaults to `None`.
+        &#34;&#34;&#34;
+
+        targets: Dict[Literal[&#34;annotations&#34;, &#34;labels&#34;], Dict[str, str]] = {}
+
+        if annotations:
+            targets[&#34;annotations&#34;] = annotations
+
+        if labels:
+            targets[&#34;labels&#34;] = labels
+
+        if targets:
+            for target, prefixes_to_add in targets.items():
+                for name, prefix in prefixes_to_add.items():
+                    self.__dict__[f&#34;common_{target}&#34;][name] = (
+                        prefix + self.__dict__[f&#34;common_{target}&#34;][name]
+                    )
+                    for alert in self.alerts:
+                        alert.__dict__[target][name] = (
+                            prefix + alert.__dict__[target][name]
+                        )
+
+            self.update_specific_elements(list(targets.keys()))
+
+    # --------------------------------------------------------------------------</code></pre>
+</details>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-classes">Classes</h2>
+<dl>
+<dt id="prometheus_alert_model.main.Alert"><code class="flex name class">
+<span>class <span class="ident">Alert</span></span>
+<span>(</span><span>**data: Any)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Create a new model by parsing and validating input data from keyword arguments.</p>
+<p>Raises ValidationError if the input data cannot be parsed to form a valid model.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class Alert(BaseModel):
+    fingerprint: str
+    status: str
+    starts_at: datetime = Field(alias=&#34;startsAt&#34;)
+    ends_at: datetime = Field(alias=&#34;endsAt&#34;)
+    generator_url: str = Field(alias=&#34;generatorURL&#34;)
+    annotations: Dict[str, str]
+    labels: Dict[str, str]
+
+    specific_annotations: Dict[str, str] = Field(
+        default={},
+        description=(
+            &#34;Annotations that are specific to this alert in the context of the &#34;
+            &#34;whole alert group. Does not have to be provided in the payload &#34;
+            &#34;and is automatically calculated.&#34;
+        ),
+    )
+    specific_labels: Dict[str, str] = Field(
+        default={},
+        description=(
+            &#34;Labels that are specific to this alert in the context of the &#34;
+            &#34;whole alert group. Does not have to be provided in the payload &#34;
+            &#34;and is automatically calculated.&#34;
+        ),
+    )
+
+    class Config:
+        extra = &#34;allow&#34;
+        allow_population_by_field_name = True</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>pydantic.main.BaseModel</li>
+<li>pydantic.utils.Representation</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="prometheus_alert_model.main.Alert.Config"><code class="name">var <span class="ident">Config</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="prometheus_alert_model.main.Alert.annotations"><code class="name">var <span class="ident">annotations</span> : Dict[str, str]</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="prometheus_alert_model.main.Alert.ends_at"><code class="name">var <span class="ident">ends_at</span> : datetime.datetime</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="prometheus_alert_model.main.Alert.fingerprint"><code class="name">var <span class="ident">fingerprint</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="prometheus_alert_model.main.Alert.generator_url"><code class="name">var <span class="ident">generator_url</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="prometheus_alert_model.main.Alert.labels"><code class="name">var <span class="ident">labels</span> : Dict[str, str]</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="prometheus_alert_model.main.Alert.specific_annotations"><code class="name">var <span class="ident">specific_annotations</span> : Dict[str, str]</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="prometheus_alert_model.main.Alert.specific_labels"><code class="name">var <span class="ident">specific_labels</span> : Dict[str, str]</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="prometheus_alert_model.main.Alert.starts_at"><code class="name">var <span class="ident">starts_at</span> : datetime.datetime</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="prometheus_alert_model.main.Alert.status"><code class="name">var <span class="ident">status</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+<dt id="prometheus_alert_model.main.AlertGroup"><code class="flex name class">
+<span>class <span class="ident">AlertGroup</span></span>
+<span>(</span><span>**data: Any)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Create a new model by parsing and validating input data from keyword arguments.</p>
+<p>Raises ValidationError if the input data cannot be parsed to form a valid model.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class AlertGroup(BaseModel):
+    receiver: str
+    status: str
+    external_url: str = Field(alias=&#34;externalURL&#34;)
+    version: str
+    group_key: str = Field(alias=&#34;groupKey&#34;)
+    truncated_alerts: int = Field(alias=&#34;truncatedAlerts&#34;, default=0)
+    group_labels: Dict[str, str] = Field(alias=&#34;groupLabels&#34;)
+    common_annotations: Dict[str, str] = Field(alias=&#34;commonAnnotations&#34;)
+    common_labels: Dict[str, str] = Field(alias=&#34;commonLabels&#34;)
+    alerts: List[Alert]
+
+    @validator(&#34;alerts&#34;)
+    def check_specific(cls, v, values):
+        &#34;&#34;&#34;Updates specific labels and annotations.&#34;&#34;&#34;
+
+        for alert in v:
+            alert.specific_annotations = {
+                name: alert.annotations[name]
+                for name in set(alert.annotations) - set(values.get(&#34;common_annotations&#34;))
+            }
+
+            alert.specific_labels = {
+                name: alert.labels[name]
+                for name in set(alert.labels) - set(values.get(&#34;common_labels&#34;))
+            }
+
+        return v
+
+    class Config:
+        extra = &#34;allow&#34;
+        allow_population_by_field_name = True
+
+    # --------------------------------------------------------------------------
+
+    def update_specific_elements(
+        self,
+        targets: Union[
+            Sequence[Literal[&#34;annotations&#34;, &#34;labels&#34;]], Literal[&#34;annotations&#34;, &#34;labels&#34;]
+        ] = [&#34;annotations&#34;, &#34;labels&#34;],
+    ) -&gt; None:
+        &#34;&#34;&#34;Updates specific labels and annotations.&#34;&#34;&#34;
+
+        targets = (targets,) if isinstance(targets, str) else targets
+
+        for target in targets:
+            for alert in self.alerts:
+                alert.__dict__[f&#34;specific_{target}&#34;] = {
+                    name: alert.__dict__[target][name]
+                    for name in set(alert.__dict__[target])
+                    - set(self.__dict__[f&#34;common_{target}&#34;])
+                }
+
+    def update_specific_annotations(self) -&gt; None:
+        &#34;&#34;&#34;Updates specific annotations.&#34;&#34;&#34;
+
+        for alert in self.alerts:
+            alert.specific_annotations = {
+                name: alert.annotations[name]
+                for name in set(alert.annotations) - set(self.common_annotations)
+            }
+
+    def update_specific_labels(self) -&gt; None:
+        &#34;&#34;&#34;Updates specific labels.&#34;&#34;&#34;
+
+        for alert in self.alerts:
+            alert.specific_labels = {
+                name: alert.labels[name]
+                for name in set(alert.labels) - set(self.common_labels)
+            }
+
+    # --------------------------------------------------------------------------
+
+    def update_common_elements(
+        self,
+        targets: Union[
+            Sequence[Literal[&#34;annotations&#34;, &#34;labels&#34;]], Literal[&#34;annotations&#34;, &#34;labels&#34;]
+        ] = [&#34;annotations&#34;, &#34;labels&#34;],
+    ) -&gt; None:
+        &#34;&#34;&#34;Updates common annotations and labels.
+
+        Args:
+            targets (Union[Sequence[Literal[&#34;annotations&#34;, &#34;labels&#34;]], Literal[&#34;annotations&#34;, &#34;labels&#34;], optional):
+                Targets that should be updated. Defaults to [&#34;annotations&#34;, &#34;labels&#34;].
+        &#34;&#34;&#34;
+
+        for target in targets:
+            self.__dict__[f&#34;common_{target}&#34;] = intersect(
+                [alert.__dict__[target] for alert in self.alerts]
+            )
+
+    def update_common_annotations(self) -&gt; None:
+        &#34;&#34;&#34;Updates common annotations.&#34;&#34;&#34;
+
+        self.common_annotations = intersect([alert.annotations for alert in self.alerts])
+
+    def update_common_labels(self) -&gt; None:
+        &#34;&#34;&#34;Updates common labels.&#34;&#34;&#34;
+
+        self.common_labels = intersect([alert.labels for alert in self.alerts])
+
+    # --------------------------------------------------------------------------
+
+    def remove(
+        self,
+        annotations: Optional[Union[List[str], str]] = None,
+        labels: Optional[Union[List[str], str]] = None,
+    ) -&gt; None:
+        &#34;&#34;&#34;Removes annotations and labels by name.
+
+        Args:
+            annotations (Union[List[str], str], optional): Names of
+                annotations to remove. Defaults to `None`.
+            labels (Union[List[str], str], optional): Names of labels to
+                remove. Defaults to `None`.
+        &#34;&#34;&#34;
+
+        targets: Dict[str, Union[List[str], str]] = {}
+
+        if annotations:
+            targets[&#34;annotations&#34;] = annotations
+
+        if labels:
+            targets[&#34;labels&#34;] = labels
+
+        for target, values in targets.items():
+            names_to_pop: List[str] = [values] if isinstance(values, str) else values
+
+            for name_to_pop in names_to_pop:
+                self.__dict__[f&#34;common_{target}&#34;].pop(name_to_pop, None)
+                for alert in self.alerts:
+                    alert.__dict__[target].pop(name_to_pop, None)
+                    alert.__dict__[f&#34;specific_{target}&#34;].pop(name_to_pop, None)
+
+    # --------------------------------------------------------------------------
+
+    def remove_re(
+        self,
+        annotations: Optional[Union[List[Union[Pattern, str]], Pattern, str]] = None,
+        labels: Optional[Union[List[Union[Pattern, str]], Pattern, str]] = None,
+    ) -&gt; None:
+        &#34;&#34;&#34;Removes annotations and labels by matching names with regex.
+
+        Args:
+            annotations (Union[List[Union[Pattern, str]], Pattern, str], optional):
+                Patterns that should be matched unanchored against annotations.
+                If a `str` is given instead of a `Pattern`, the `str` will be
+                compiled to `Pattern`. Defaults to `None`.
+            labels (Union[List[Union[Pattern, str]], Pattern, str], optional):
+                Patterns that should be matched unanchored against labels.
+                If a `str` is given instead of a `Pattern`, the `str` will be
+                compiled to `Pattern`. Defaults to `None`.
+        &#34;&#34;&#34;
+
+        targets: Dict[
+            Literal[&#34;annotations&#34;, &#34;labels&#34;],
+            Union[List[Union[Pattern, str]], Pattern, str],
+        ] = {}
+
+        if annotations:
+            targets[&#34;annotations&#34;] = annotations
+
+        if labels:
+            targets[&#34;labels&#34;] = labels
+
+        if targets:
+            for target, target_value in targets.items():
+
+                patterns: List[Pattern]
+                if isinstance(target_value, str):
+                    patterns = [compile(target_value)]
+                elif isinstance(target_value, Pattern):
+                    patterns = [target_value]
+                else:
+                    patterns = [
+                        compile(pattern) if isinstance(pattern, str) else pattern
+                        for pattern in target_value
+                    ]
+
+                for pattern in patterns:
+                    elements = self.__dict__[f&#34;common_{target}&#34;]
+
+                    for name_to_pop in {e for e in elements if pattern.search(e)}:
+                        elements.pop(name_to_pop, None)
+
+                    for alert in self.alerts:
+                        elements = alert.__dict__[target]
+                        for name_to_pop in {e for e in elements if pattern.search(e)}:
+                            elements.pop(name_to_pop, None)
+
+            self.update_specific_elements(list(targets.keys()))
+
+    # --------------------------------------------------------------------------
+
+    def add(
+        self,
+        annotations: Optional[Dict[str, str]] = None,
+        labels: Optional[Dict[str, str]] = None,
+    ) -&gt; None:
+        &#34;&#34;&#34;Adds annotations and labels but skips existing elements.
+
+        Args:
+            annotations (Optional[Dict[str, str]], optional): `Dict` of
+                annotations to add. Defaults to `None`.
+            labels (Optional[Dict[str, str]], optional): `Dict` of labels to add.
+                Defaults to `None`.
+        &#34;&#34;&#34;
+
+        targets: Dict[Literal[&#34;annotations&#34;, &#34;labels&#34;], Dict[str, str]] = {}
+
+        if annotations:
+            targets[&#34;annotations&#34;] = annotations
+
+        if labels:
+            targets[&#34;labels&#34;] = labels
+
+        if targets:
+            for target, items_to_add in targets.items():
+                for name, value in items_to_add.items():
+                    unique_values = set()
+
+                    for alert in self.alerts:
+                        elements = alert.__dict__[target]
+
+                        if name not in elements:
+                            elements[name] = value
+                            unique_values.add(value)
+                        else:
+                            unique_values.add(elements[name])
+
+                    if len(unique_values) == 1 and value in unique_values:
+                        self.__dict__[f&#34;common_{target}&#34;][name] = value
+
+            self.update_specific_elements(list(targets.keys()))
+
+    # --------------------------------------------------------------------------
+
+    def override(
+        self,
+        annotations: Optional[Dict[str, str]] = None,
+        labels: Optional[Dict[str, str]] = None,
+    ) -&gt; None:
+        &#34;&#34;&#34;Adds annotations and labels and overrides existing elements.
+
+        Args:
+            annotations (Optional[Dict[str, str]], optional): `Dict` of
+                annotations to override with. Defaults to `None`.
+            labels (Optional[Dict[str, str]], optional): `Dict` of labels to
+                override with. Defaults to `None`.
+        &#34;&#34;&#34;
+
+        targets: Dict[Literal[&#34;annotations&#34;, &#34;labels&#34;], Dict[str, str]] = {}
+
+        if annotations:
+            targets[&#34;annotations&#34;] = annotations
+
+        if labels:
+            targets[&#34;labels&#34;] = labels
+
+        if targets:
+            for target, items_to_override in targets.items():
+                for name, value in items_to_override.items():
+                    self.__dict__[f&#34;common_{target}&#34;][name] = value
+                    for alert in self.alerts:
+                        alert.__dict__[target][name] = value
+
+            self.update_specific_elements(list(targets.keys()))
+
+    # --------------------------------------------------------------------------
+
+    def add_prefix(
+        self,
+        annotations: Optional[Dict[str, str]] = None,
+        labels: Optional[Dict[str, str]] = None,
+    ) -&gt; None:
+        &#34;&#34;&#34;Adds prefix to annotations and labels.
+
+        Args:
+            annotations (Optional[Dict[str, str]], optional): Dictionary with
+                annotation names that should be updated and values representing
+                the to be added prefix. Defaults to `None`.
+            labels (Optional[Dict[str, str]], optional): Dictionary with
+                labels names that should be updated and values representing
+                the to be added prefix. Defaults to `None`.
+        &#34;&#34;&#34;
+
+        targets: Dict[Literal[&#34;annotations&#34;, &#34;labels&#34;], Dict[str, str]] = {}
+
+        if annotations:
+            targets[&#34;annotations&#34;] = annotations
+
+        if labels:
+            targets[&#34;labels&#34;] = labels
+
+        if targets:
+            for target, prefixes_to_add in targets.items():
+                for name, prefix in prefixes_to_add.items():
+                    self.__dict__[f&#34;common_{target}&#34;][name] = (
+                        prefix + self.__dict__[f&#34;common_{target}&#34;][name]
+                    )
+                    for alert in self.alerts:
+                        alert.__dict__[target][name] = (
+                            prefix + alert.__dict__[target][name]
+                        )
+
+            self.update_specific_elements(list(targets.keys()))</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>pydantic.main.BaseModel</li>
+<li>pydantic.utils.Representation</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="prometheus_alert_model.main.AlertGroup.Config"><code class="name">var <span class="ident">Config</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="prometheus_alert_model.main.AlertGroup.alerts"><code class="name">var <span class="ident">alerts</span> : List[<a title="prometheus_alert_model.main.Alert" href="#prometheus_alert_model.main.Alert">Alert</a>]</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="prometheus_alert_model.main.AlertGroup.common_annotations"><code class="name">var <span class="ident">common_annotations</span> : Dict[str, str]</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="prometheus_alert_model.main.AlertGroup.common_labels"><code class="name">var <span class="ident">common_labels</span> : Dict[str, str]</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="prometheus_alert_model.main.AlertGroup.external_url"><code class="name">var <span class="ident">external_url</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="prometheus_alert_model.main.AlertGroup.group_key"><code class="name">var <span class="ident">group_key</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="prometheus_alert_model.main.AlertGroup.group_labels"><code class="name">var <span class="ident">group_labels</span> : Dict[str, str]</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="prometheus_alert_model.main.AlertGroup.receiver"><code class="name">var <span class="ident">receiver</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="prometheus_alert_model.main.AlertGroup.status"><code class="name">var <span class="ident">status</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="prometheus_alert_model.main.AlertGroup.truncated_alerts"><code class="name">var <span class="ident">truncated_alerts</span> : int</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="prometheus_alert_model.main.AlertGroup.version"><code class="name">var <span class="ident">version</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+<h3>Static methods</h3>
+<dl>
+<dt id="prometheus_alert_model.main.AlertGroup.check_specific"><code class="name flex">
+<span>def <span class="ident">check_specific</span></span>(<span>v, values)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Updates specific labels and annotations.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@validator(&#34;alerts&#34;)
+def check_specific(cls, v, values):
+    &#34;&#34;&#34;Updates specific labels and annotations.&#34;&#34;&#34;
+
+    for alert in v:
+        alert.specific_annotations = {
+            name: alert.annotations[name]
+            for name in set(alert.annotations) - set(values.get(&#34;common_annotations&#34;))
+        }
+
+        alert.specific_labels = {
+            name: alert.labels[name]
+            for name in set(alert.labels) - set(values.get(&#34;common_labels&#34;))
+        }
+
+    return v</code></pre>
+</details>
+</dd>
+</dl>
+<h3>Methods</h3>
+<dl>
+<dt id="prometheus_alert_model.main.AlertGroup.add"><code class="name flex">
+<span>def <span class="ident">add</span></span>(<span>self, annotations: Union[Dict[str, str], NoneType] = None, labels: Union[Dict[str, str], NoneType] = None) ‑> NoneType</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Adds annotations and labels but skips existing elements.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>annotations</code></strong> :&ensp;<code>Optional[Dict[str, str]]</code>, optional</dt>
+<dd><code>Dict</code> of
+annotations to add. Defaults to <code>None</code>.</dd>
+<dt><strong><code>labels</code></strong> :&ensp;<code>Optional[Dict[str, str]]</code>, optional</dt>
+<dd><code>Dict</code> of labels to add.
+Defaults to <code>None</code>.</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def add(
+    self,
+    annotations: Optional[Dict[str, str]] = None,
+    labels: Optional[Dict[str, str]] = None,
+) -&gt; None:
+    &#34;&#34;&#34;Adds annotations and labels but skips existing elements.
+
+    Args:
+        annotations (Optional[Dict[str, str]], optional): `Dict` of
+            annotations to add. Defaults to `None`.
+        labels (Optional[Dict[str, str]], optional): `Dict` of labels to add.
+            Defaults to `None`.
+    &#34;&#34;&#34;
+
+    targets: Dict[Literal[&#34;annotations&#34;, &#34;labels&#34;], Dict[str, str]] = {}
+
+    if annotations:
+        targets[&#34;annotations&#34;] = annotations
+
+    if labels:
+        targets[&#34;labels&#34;] = labels
+
+    if targets:
+        for target, items_to_add in targets.items():
+            for name, value in items_to_add.items():
+                unique_values = set()
+
+                for alert in self.alerts:
+                    elements = alert.__dict__[target]
+
+                    if name not in elements:
+                        elements[name] = value
+                        unique_values.add(value)
+                    else:
+                        unique_values.add(elements[name])
+
+                if len(unique_values) == 1 and value in unique_values:
+                    self.__dict__[f&#34;common_{target}&#34;][name] = value
+
+        self.update_specific_elements(list(targets.keys()))</code></pre>
+</details>
+</dd>
+<dt id="prometheus_alert_model.main.AlertGroup.add_prefix"><code class="name flex">
+<span>def <span class="ident">add_prefix</span></span>(<span>self, annotations: Union[Dict[str, str], NoneType] = None, labels: Union[Dict[str, str], NoneType] = None) ‑> NoneType</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Adds prefix to annotations and labels.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>annotations</code></strong> :&ensp;<code>Optional[Dict[str, str]]</code>, optional</dt>
+<dd>Dictionary with
+annotation names that should be updated and values representing
+the to be added prefix. Defaults to <code>None</code>.</dd>
+<dt><strong><code>labels</code></strong> :&ensp;<code>Optional[Dict[str, str]]</code>, optional</dt>
+<dd>Dictionary with
+labels names that should be updated and values representing
+the to be added prefix. Defaults to <code>None</code>.</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def add_prefix(
+    self,
+    annotations: Optional[Dict[str, str]] = None,
+    labels: Optional[Dict[str, str]] = None,
+) -&gt; None:
+    &#34;&#34;&#34;Adds prefix to annotations and labels.
+
+    Args:
+        annotations (Optional[Dict[str, str]], optional): Dictionary with
+            annotation names that should be updated and values representing
+            the to be added prefix. Defaults to `None`.
+        labels (Optional[Dict[str, str]], optional): Dictionary with
+            labels names that should be updated and values representing
+            the to be added prefix. Defaults to `None`.
+    &#34;&#34;&#34;
+
+    targets: Dict[Literal[&#34;annotations&#34;, &#34;labels&#34;], Dict[str, str]] = {}
+
+    if annotations:
+        targets[&#34;annotations&#34;] = annotations
+
+    if labels:
+        targets[&#34;labels&#34;] = labels
+
+    if targets:
+        for target, prefixes_to_add in targets.items():
+            for name, prefix in prefixes_to_add.items():
+                self.__dict__[f&#34;common_{target}&#34;][name] = (
+                    prefix + self.__dict__[f&#34;common_{target}&#34;][name]
+                )
+                for alert in self.alerts:
+                    alert.__dict__[target][name] = (
+                        prefix + alert.__dict__[target][name]
+                    )
+
+        self.update_specific_elements(list(targets.keys()))</code></pre>
+</details>
+</dd>
+<dt id="prometheus_alert_model.main.AlertGroup.override"><code class="name flex">
+<span>def <span class="ident">override</span></span>(<span>self, annotations: Union[Dict[str, str], NoneType] = None, labels: Union[Dict[str, str], NoneType] = None) ‑> NoneType</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Adds annotations and labels and overrides existing elements.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>annotations</code></strong> :&ensp;<code>Optional[Dict[str, str]]</code>, optional</dt>
+<dd><code>Dict</code> of
+annotations to override with. Defaults to <code>None</code>.</dd>
+<dt><strong><code>labels</code></strong> :&ensp;<code>Optional[Dict[str, str]]</code>, optional</dt>
+<dd><code>Dict</code> of labels to
+override with. Defaults to <code>None</code>.</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def override(
+    self,
+    annotations: Optional[Dict[str, str]] = None,
+    labels: Optional[Dict[str, str]] = None,
+) -&gt; None:
+    &#34;&#34;&#34;Adds annotations and labels and overrides existing elements.
+
+    Args:
+        annotations (Optional[Dict[str, str]], optional): `Dict` of
+            annotations to override with. Defaults to `None`.
+        labels (Optional[Dict[str, str]], optional): `Dict` of labels to
+            override with. Defaults to `None`.
+    &#34;&#34;&#34;
+
+    targets: Dict[Literal[&#34;annotations&#34;, &#34;labels&#34;], Dict[str, str]] = {}
+
+    if annotations:
+        targets[&#34;annotations&#34;] = annotations
+
+    if labels:
+        targets[&#34;labels&#34;] = labels
+
+    if targets:
+        for target, items_to_override in targets.items():
+            for name, value in items_to_override.items():
+                self.__dict__[f&#34;common_{target}&#34;][name] = value
+                for alert in self.alerts:
+                    alert.__dict__[target][name] = value
+
+        self.update_specific_elements(list(targets.keys()))</code></pre>
+</details>
+</dd>
+<dt id="prometheus_alert_model.main.AlertGroup.remove"><code class="name flex">
+<span>def <span class="ident">remove</span></span>(<span>self, annotations: Union[List[str], str, NoneType] = None, labels: Union[List[str], str, NoneType] = None) ‑> NoneType</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Removes annotations and labels by name.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>annotations</code></strong> :&ensp;<code>Union[List[str], str]</code>, optional</dt>
+<dd>Names of
+annotations to remove. Defaults to <code>None</code>.</dd>
+<dt><strong><code>labels</code></strong> :&ensp;<code>Union[List[str], str]</code>, optional</dt>
+<dd>Names of labels to
+remove. Defaults to <code>None</code>.</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def remove(
+    self,
+    annotations: Optional[Union[List[str], str]] = None,
+    labels: Optional[Union[List[str], str]] = None,
+) -&gt; None:
+    &#34;&#34;&#34;Removes annotations and labels by name.
+
+    Args:
+        annotations (Union[List[str], str], optional): Names of
+            annotations to remove. Defaults to `None`.
+        labels (Union[List[str], str], optional): Names of labels to
+            remove. Defaults to `None`.
+    &#34;&#34;&#34;
+
+    targets: Dict[str, Union[List[str], str]] = {}
+
+    if annotations:
+        targets[&#34;annotations&#34;] = annotations
+
+    if labels:
+        targets[&#34;labels&#34;] = labels
+
+    for target, values in targets.items():
+        names_to_pop: List[str] = [values] if isinstance(values, str) else values
+
+        for name_to_pop in names_to_pop:
+            self.__dict__[f&#34;common_{target}&#34;].pop(name_to_pop, None)
+            for alert in self.alerts:
+                alert.__dict__[target].pop(name_to_pop, None)
+                alert.__dict__[f&#34;specific_{target}&#34;].pop(name_to_pop, None)</code></pre>
+</details>
+</dd>
+<dt id="prometheus_alert_model.main.AlertGroup.remove_re"><code class="name flex">
+<span>def <span class="ident">remove_re</span></span>(<span>self, annotations: Union[List[Union[re.Pattern, str]], re.Pattern, str, NoneType] = None, labels: Union[List[Union[re.Pattern, str]], re.Pattern, str, NoneType] = None) ‑> NoneType</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Removes annotations and labels by matching names with regex.</p>
+<h2 id="args">Args</h2>
+<p>annotations (Union[List[Union[Pattern, str]], Pattern, str], optional):
+Patterns that should be matched unanchored against annotations.
+If a <code>str</code> is given instead of a <code>Pattern</code>, the <code>str</code> will be
+compiled to <code>Pattern</code>. Defaults to <code>None</code>.
+labels (Union[List[Union[Pattern, str]], Pattern, str], optional):
+Patterns that should be matched unanchored against labels.
+If a <code>str</code> is given instead of a <code>Pattern</code>, the <code>str</code> will be
+compiled to <code>Pattern</code>. Defaults to <code>None</code>.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def remove_re(
+    self,
+    annotations: Optional[Union[List[Union[Pattern, str]], Pattern, str]] = None,
+    labels: Optional[Union[List[Union[Pattern, str]], Pattern, str]] = None,
+) -&gt; None:
+    &#34;&#34;&#34;Removes annotations and labels by matching names with regex.
+
+    Args:
+        annotations (Union[List[Union[Pattern, str]], Pattern, str], optional):
+            Patterns that should be matched unanchored against annotations.
+            If a `str` is given instead of a `Pattern`, the `str` will be
+            compiled to `Pattern`. Defaults to `None`.
+        labels (Union[List[Union[Pattern, str]], Pattern, str], optional):
+            Patterns that should be matched unanchored against labels.
+            If a `str` is given instead of a `Pattern`, the `str` will be
+            compiled to `Pattern`. Defaults to `None`.
+    &#34;&#34;&#34;
+
+    targets: Dict[
+        Literal[&#34;annotations&#34;, &#34;labels&#34;],
+        Union[List[Union[Pattern, str]], Pattern, str],
+    ] = {}
+
+    if annotations:
+        targets[&#34;annotations&#34;] = annotations
+
+    if labels:
+        targets[&#34;labels&#34;] = labels
+
+    if targets:
+        for target, target_value in targets.items():
+
+            patterns: List[Pattern]
+            if isinstance(target_value, str):
+                patterns = [compile(target_value)]
+            elif isinstance(target_value, Pattern):
+                patterns = [target_value]
+            else:
+                patterns = [
+                    compile(pattern) if isinstance(pattern, str) else pattern
+                    for pattern in target_value
+                ]
+
+            for pattern in patterns:
+                elements = self.__dict__[f&#34;common_{target}&#34;]
+
+                for name_to_pop in {e for e in elements if pattern.search(e)}:
+                    elements.pop(name_to_pop, None)
+
+                for alert in self.alerts:
+                    elements = alert.__dict__[target]
+                    for name_to_pop in {e for e in elements if pattern.search(e)}:
+                        elements.pop(name_to_pop, None)
+
+        self.update_specific_elements(list(targets.keys()))</code></pre>
+</details>
+</dd>
+<dt id="prometheus_alert_model.main.AlertGroup.update_common_annotations"><code class="name flex">
+<span>def <span class="ident">update_common_annotations</span></span>(<span>self) ‑> NoneType</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Updates common annotations.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def update_common_annotations(self) -&gt; None:
+    &#34;&#34;&#34;Updates common annotations.&#34;&#34;&#34;
+
+    self.common_annotations = intersect([alert.annotations for alert in self.alerts])</code></pre>
+</details>
+</dd>
+<dt id="prometheus_alert_model.main.AlertGroup.update_common_elements"><code class="name flex">
+<span>def <span class="ident">update_common_elements</span></span>(<span>self, targets: Union[Sequence[typing_extensions.Literal['annotations', 'labels']], typing_extensions.Literal['annotations', 'labels']] = ['annotations', 'labels']) ‑> NoneType</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Updates common annotations and labels.</p>
+<h2 id="args">Args</h2>
+<p>targets (Union[Sequence[Literal["annotations", "labels"]], Literal["annotations", "labels"], optional):
+Targets that should be updated. Defaults to ["annotations", "labels"].</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def update_common_elements(
+    self,
+    targets: Union[
+        Sequence[Literal[&#34;annotations&#34;, &#34;labels&#34;]], Literal[&#34;annotations&#34;, &#34;labels&#34;]
+    ] = [&#34;annotations&#34;, &#34;labels&#34;],
+) -&gt; None:
+    &#34;&#34;&#34;Updates common annotations and labels.
+
+    Args:
+        targets (Union[Sequence[Literal[&#34;annotations&#34;, &#34;labels&#34;]], Literal[&#34;annotations&#34;, &#34;labels&#34;], optional):
+            Targets that should be updated. Defaults to [&#34;annotations&#34;, &#34;labels&#34;].
+    &#34;&#34;&#34;
+
+    for target in targets:
+        self.__dict__[f&#34;common_{target}&#34;] = intersect(
+            [alert.__dict__[target] for alert in self.alerts]
+        )</code></pre>
+</details>
+</dd>
+<dt id="prometheus_alert_model.main.AlertGroup.update_common_labels"><code class="name flex">
+<span>def <span class="ident">update_common_labels</span></span>(<span>self) ‑> NoneType</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Updates common labels.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def update_common_labels(self) -&gt; None:
+    &#34;&#34;&#34;Updates common labels.&#34;&#34;&#34;
+
+    self.common_labels = intersect([alert.labels for alert in self.alerts])</code></pre>
+</details>
+</dd>
+<dt id="prometheus_alert_model.main.AlertGroup.update_specific_annotations"><code class="name flex">
+<span>def <span class="ident">update_specific_annotations</span></span>(<span>self) ‑> NoneType</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Updates specific annotations.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def update_specific_annotations(self) -&gt; None:
+    &#34;&#34;&#34;Updates specific annotations.&#34;&#34;&#34;
+
+    for alert in self.alerts:
+        alert.specific_annotations = {
+            name: alert.annotations[name]
+            for name in set(alert.annotations) - set(self.common_annotations)
+        }</code></pre>
+</details>
+</dd>
+<dt id="prometheus_alert_model.main.AlertGroup.update_specific_elements"><code class="name flex">
+<span>def <span class="ident">update_specific_elements</span></span>(<span>self, targets: Union[Sequence[typing_extensions.Literal['annotations', 'labels']], typing_extensions.Literal['annotations', 'labels']] = ['annotations', 'labels']) ‑> NoneType</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Updates specific labels and annotations.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def update_specific_elements(
+    self,
+    targets: Union[
+        Sequence[Literal[&#34;annotations&#34;, &#34;labels&#34;]], Literal[&#34;annotations&#34;, &#34;labels&#34;]
+    ] = [&#34;annotations&#34;, &#34;labels&#34;],
+) -&gt; None:
+    &#34;&#34;&#34;Updates specific labels and annotations.&#34;&#34;&#34;
+
+    targets = (targets,) if isinstance(targets, str) else targets
+
+    for target in targets:
+        for alert in self.alerts:
+            alert.__dict__[f&#34;specific_{target}&#34;] = {
+                name: alert.__dict__[target][name]
+                for name in set(alert.__dict__[target])
+                - set(self.__dict__[f&#34;common_{target}&#34;])
+            }</code></pre>
+</details>
+</dd>
+<dt id="prometheus_alert_model.main.AlertGroup.update_specific_labels"><code class="name flex">
+<span>def <span class="ident">update_specific_labels</span></span>(<span>self) ‑> NoneType</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Updates specific labels.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def update_specific_labels(self) -&gt; None:
+    &#34;&#34;&#34;Updates specific labels.&#34;&#34;&#34;
+
+    for alert in self.alerts:
+        alert.specific_labels = {
+            name: alert.labels[name]
+            for name in set(alert.labels) - set(self.common_labels)
+        }</code></pre>
+</details>
+</dd>
+</dl>
+</dd>
+</dl>
+</section>
+</article>
+<nav id="sidebar">
+<h1>Index</h1>
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a title="prometheus_alert_model" href="index.html">prometheus_alert_model</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-classes">Classes</a></h3>
+<ul>
+<li>
+<h4><code><a title="prometheus_alert_model.main.Alert" href="#prometheus_alert_model.main.Alert">Alert</a></code></h4>
+<ul class="">
+<li><code><a title="prometheus_alert_model.main.Alert.Config" href="#prometheus_alert_model.main.Alert.Config">Config</a></code></li>
+<li><code><a title="prometheus_alert_model.main.Alert.annotations" href="#prometheus_alert_model.main.Alert.annotations">annotations</a></code></li>
+<li><code><a title="prometheus_alert_model.main.Alert.ends_at" href="#prometheus_alert_model.main.Alert.ends_at">ends_at</a></code></li>
+<li><code><a title="prometheus_alert_model.main.Alert.fingerprint" href="#prometheus_alert_model.main.Alert.fingerprint">fingerprint</a></code></li>
+<li><code><a title="prometheus_alert_model.main.Alert.generator_url" href="#prometheus_alert_model.main.Alert.generator_url">generator_url</a></code></li>
+<li><code><a title="prometheus_alert_model.main.Alert.labels" href="#prometheus_alert_model.main.Alert.labels">labels</a></code></li>
+<li><code><a title="prometheus_alert_model.main.Alert.specific_annotations" href="#prometheus_alert_model.main.Alert.specific_annotations">specific_annotations</a></code></li>
+<li><code><a title="prometheus_alert_model.main.Alert.specific_labels" href="#prometheus_alert_model.main.Alert.specific_labels">specific_labels</a></code></li>
+<li><code><a title="prometheus_alert_model.main.Alert.starts_at" href="#prometheus_alert_model.main.Alert.starts_at">starts_at</a></code></li>
+<li><code><a title="prometheus_alert_model.main.Alert.status" href="#prometheus_alert_model.main.Alert.status">status</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="prometheus_alert_model.main.AlertGroup" href="#prometheus_alert_model.main.AlertGroup">AlertGroup</a></code></h4>
+<ul class="">
+<li><code><a title="prometheus_alert_model.main.AlertGroup.Config" href="#prometheus_alert_model.main.AlertGroup.Config">Config</a></code></li>
+<li><code><a title="prometheus_alert_model.main.AlertGroup.add" href="#prometheus_alert_model.main.AlertGroup.add">add</a></code></li>
+<li><code><a title="prometheus_alert_model.main.AlertGroup.add_prefix" href="#prometheus_alert_model.main.AlertGroup.add_prefix">add_prefix</a></code></li>
+<li><code><a title="prometheus_alert_model.main.AlertGroup.alerts" href="#prometheus_alert_model.main.AlertGroup.alerts">alerts</a></code></li>
+<li><code><a title="prometheus_alert_model.main.AlertGroup.check_specific" href="#prometheus_alert_model.main.AlertGroup.check_specific">check_specific</a></code></li>
+<li><code><a title="prometheus_alert_model.main.AlertGroup.common_annotations" href="#prometheus_alert_model.main.AlertGroup.common_annotations">common_annotations</a></code></li>
+<li><code><a title="prometheus_alert_model.main.AlertGroup.common_labels" href="#prometheus_alert_model.main.AlertGroup.common_labels">common_labels</a></code></li>
+<li><code><a title="prometheus_alert_model.main.AlertGroup.external_url" href="#prometheus_alert_model.main.AlertGroup.external_url">external_url</a></code></li>
+<li><code><a title="prometheus_alert_model.main.AlertGroup.group_key" href="#prometheus_alert_model.main.AlertGroup.group_key">group_key</a></code></li>
+<li><code><a title="prometheus_alert_model.main.AlertGroup.group_labels" href="#prometheus_alert_model.main.AlertGroup.group_labels">group_labels</a></code></li>
+<li><code><a title="prometheus_alert_model.main.AlertGroup.override" href="#prometheus_alert_model.main.AlertGroup.override">override</a></code></li>
+<li><code><a title="prometheus_alert_model.main.AlertGroup.receiver" href="#prometheus_alert_model.main.AlertGroup.receiver">receiver</a></code></li>
+<li><code><a title="prometheus_alert_model.main.AlertGroup.remove" href="#prometheus_alert_model.main.AlertGroup.remove">remove</a></code></li>
+<li><code><a title="prometheus_alert_model.main.AlertGroup.remove_re" href="#prometheus_alert_model.main.AlertGroup.remove_re">remove_re</a></code></li>
+<li><code><a title="prometheus_alert_model.main.AlertGroup.status" href="#prometheus_alert_model.main.AlertGroup.status">status</a></code></li>
+<li><code><a title="prometheus_alert_model.main.AlertGroup.truncated_alerts" href="#prometheus_alert_model.main.AlertGroup.truncated_alerts">truncated_alerts</a></code></li>
+<li><code><a title="prometheus_alert_model.main.AlertGroup.update_common_annotations" href="#prometheus_alert_model.main.AlertGroup.update_common_annotations">update_common_annotations</a></code></li>
+<li><code><a title="prometheus_alert_model.main.AlertGroup.update_common_elements" href="#prometheus_alert_model.main.AlertGroup.update_common_elements">update_common_elements</a></code></li>
+<li><code><a title="prometheus_alert_model.main.AlertGroup.update_common_labels" href="#prometheus_alert_model.main.AlertGroup.update_common_labels">update_common_labels</a></code></li>
+<li><code><a title="prometheus_alert_model.main.AlertGroup.update_specific_annotations" href="#prometheus_alert_model.main.AlertGroup.update_specific_annotations">update_specific_annotations</a></code></li>
+<li><code><a title="prometheus_alert_model.main.AlertGroup.update_specific_elements" href="#prometheus_alert_model.main.AlertGroup.update_specific_elements">update_specific_elements</a></code></li>
+<li><code><a title="prometheus_alert_model.main.AlertGroup.update_specific_labels" href="#prometheus_alert_model.main.AlertGroup.update_specific_labels">update_specific_labels</a></code></li>
+<li><code><a title="prometheus_alert_model.main.AlertGroup.version" href="#prometheus_alert_model.main.AlertGroup.version">version</a></code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc"><cite>pdoc</cite> 0.9.2</a>.</p>
+</footer>
+</body>
+</html>
