@@ -8,6 +8,8 @@ from typing import Dict, List, Optional, Sequence, Union
 from pydantic import BaseModel, Field, validator
 from typing_extensions import Literal
 
+from .utils import intersect
+
 
 class Alert(BaseModel):
     fingerprint: str
@@ -110,6 +112,36 @@ class AlertGroup(BaseModel):
                 name: alert.labels[name]
                 for name in set(alert.labels) - set(self.common_labels)
             }
+
+    # --------------------------------------------------------------------------
+
+    def update_common_elements(
+        self,
+        targets: Union[
+            Sequence[Literal["annotations", "labels"]], Literal["annotations", "labels"]
+        ] = ["annotations", "labels"],
+    ) -> None:
+        """Updates common annotations and labels.
+
+        Args:
+            targets (Union[Sequence[Literal["annotations", "labels"]], Literal["annotations", "labels"], optional):
+                Targets that should be updated. Defaults to ["annotations", "labels"].
+        """
+
+        for target in targets:
+            self.__dict__[f"common_{target}"] = intersect(
+                [alert.__dict__[target] for alert in self.alerts]
+            )
+
+    def update_common_annotations(self) -> None:
+        """Updates common annotations."""
+
+        self.common_annotations = intersect([alert.annotations for alert in self.alerts])
+
+    def update_common_labels(self) -> None:
+        """Updates common labels."""
+
+        self.common_labels = intersect([alert.labels for alert in self.alerts])
 
     # --------------------------------------------------------------------------
 
