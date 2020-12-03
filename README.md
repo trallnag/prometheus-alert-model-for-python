@@ -8,7 +8,7 @@
 [![docs](https://img.shields.io/badge/docs-here-blue)](https://trallnag.github.io/prometheus-alert-model-for-python/)
 
 ![release](https://github.com/trallnag/prometheus-alert-model-for-python/workflows/release/badge.svg)
-![test branches](https://github.com/trallnag/prometheus-alert-model-for-python/workflows/test%20branches/badge.svg)
+![commit](https://github.com/trallnag/prometheus-alert-model-for-python/workflows/commit/badge.svg)
 [![codecov](https://codecov.io/gh/trallnag/prometheus-alert-model-for-python/branch/master/graph/badge.svg)](https://codecov.io/gh/trallnag/prometheus-alert-model-for-python)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 
