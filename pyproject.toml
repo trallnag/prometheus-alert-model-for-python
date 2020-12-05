@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "prometheus-alert-model"
-version = "0.1.0"
+version = "1.0.0"
 description = "Pydantic model of the Prometheus Alertmanager alert payload"
 authors = ["Tim Schwenke <tim.and.trallnag+code@gmail.com>"]
 license = "Apache-2.0"
