@@ -12,15 +12,14 @@
 [![codecov](https://codecov.io/gh/trallnag/prometheus-alert-model-for-python/branch/master/graph/badge.svg)](https://codecov.io/gh/trallnag/prometheus-alert-model-for-python)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 
-This project provides the Pydantic models `AlertGroup` and `Alert` in addition
-to a number of useful utility methods that perform actions on alert data. It can
+This project provides the Pydantic models `AlertGroup` and `Alert` that
+represent a payload from Prometheus Alertmanager. In addition, it also includes
+a number of useful utility methods that perform actions on alert data.  It can
 be used as a drop-in wherever you want to work with Prometheus Alertmanager
 alert payload data.
 
 A prominent example for using it is a FastAPI route that receives alert payloads.
-Simply add `AlertGroup` as a parameter to the handler. Utilities include
-actions like adding and removing labels and annotations or updating them by
-adding prefixes and suffixes.
+Simply add `AlertGroup` as a parameter to the handler.
 
 <!-- omit in toc -->
 ## Features
@@ -28,15 +27,14 @@ adding prefixes and suffixes.
 - Pydantic models that matches the official Alertmanager payload schema.
 - Fields `specific_annotations` and `specific_labels` in every alert that
     contain elements that are specific to the respective alert.
-- Method to remove, add, update, override and prefix annotations and labels.
+- Methods to update common annotations and labels.
+- Methods to remove, add, update, override and prefix annotations and labels.
 - Every single method is well covered by tests.
 
 <!-- omit in toc -->
 ## Table of Contents
 
 - [Usage](#usage)
-  - [`Alert` Model](#alert-model)
-  - [`AlertGroup` Model](#alertgroup-model)
 - [Motivation](#motivation)
 - [Development](#development)
 
@@ -72,6 +70,7 @@ def post_alert(alert_group: AlertGroup):
         print(alert.specific_labels)
 ```
 
+<!-- omit in toc -->
 ### `Alert` Model
 
 In the following all attributes you can find within a `Alert`. Notice
@@ -91,6 +90,7 @@ specific_annotations: Dict[str, str]
 specific_labels: Dict[str, str]
 ```
 
+<!-- omit in toc -->
 ### `AlertGroup` Model
 
 In the following all attributes you can find within a `AlertGroup`. It
