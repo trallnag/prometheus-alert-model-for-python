@@ -47,3 +47,18 @@ def test_remove_re_single_label_as_pattern(helpers, data_path):
     assert "mu" not in alert_group.alerts[0].specific_labels
     assert "foo_bar_qux" not in alert_group.alerts[0].labels
     assert "foo_bar_qux" not in alert_group.alerts[1].labels
+
+
+def test_remove_re_multiple_annotations(helpers, data_path):
+    with data_path.joinpath("payload-simple-01.json").open() as file:
+        payload = json.load(file)
+
+    alert_group = AlertGroup(**payload)
+
+    alert_group.remove_re(annotations=[r"^(description|summary)$", r"^(this|that)$"])
+
+    assert alert_group.common_annotations == {}
+
+    for alert in alert_group.alerts:
+        assert alert.annotations == {}
+        assert alert.specific_annotations == {}

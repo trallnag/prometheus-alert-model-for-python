@@ -111,3 +111,33 @@ def test_update_common_labels_v2(helpers, data_path):
         "foo_bar_qux": "foo_moo_zoom",
         "severity": "warning",
     }
+
+
+# ==============================================================================
+
+
+def test_update_common_elements(helpers, data_path):
+    with data_path.joinpath("payload-simple-01.json").open() as file:
+        payload = json.load(file)
+
+    alert_group = AlertGroup(**payload)
+    helpers.wrapped_debug(alert_group)
+
+    for alert in alert_group.alerts:
+        alert.labels["a"] = "a"
+        alert.annotations["a"] = "a"
+
+    alert_group.update_common_elements(targets=["annotations", "labels"])
+
+    assert alert_group.common_labels == {
+        "alertname": "WhatEver",
+        "foo_bar_qux": "foo_moo_zoom",
+        "severity": "warning",
+        "a": "a",
+    }
+
+    assert alert_group.common_annotations == {
+        "description": "A Prometheus job has disappe",
+        "summary": "Prometheus job missing (instance )",
+        "a": "a",
+    }
