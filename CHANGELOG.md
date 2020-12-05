@@ -9,6 +9,10 @@ specification.
 
 ## [Unreleased]
 
+* Nothing
+
+## [1.0.0] 2020-12-05
+
 ### Added
 
 - Automatic creation of specific labels and annotations by using Pydantic
