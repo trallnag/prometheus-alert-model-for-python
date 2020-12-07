@@ -99,13 +99,13 @@ represents a single payload from Alertmanager.
 ```python
 receiver: str
 status: str
-external_url: str = Field(alias="externalURL")
+external_url: str
 version: str
-group_key: str = Field(alias="groupKey")
-truncated_alerts: int = Field(alias="truncatedAlerts", default=0)
-group_labels: Dict[str, str] = Field(alias="groupLabels")
-common_annotations: Dict[str, str] = Field(alias="commonAnnotations")
-common_labels: Dict[str, str] = Field(alias="commonLabels")
+group_key: str
+truncated_alerts: int = =0
+group_labels: Dict[str, str]
+common_annotations: Dict[str, str]
+common_labels: Dict[str, str]
 alerts: List[Alert]
 ```
 
