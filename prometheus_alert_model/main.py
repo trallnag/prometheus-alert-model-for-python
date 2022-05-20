@@ -350,3 +350,19 @@ class AlertGroup(BaseModel):
             self.update_specific_elements(list(targets.keys()))
 
     # --------------------------------------------------------------------------
+
+    
+class Matcher(BaseModel):
+    name: str
+    value: str
+    isRegex: bool
+    isEqual: bool = True
+
+
+class AlertManagerSilence(BaseModel):
+    # https://github.com/prometheus/alertmanager/blob/f958b8be84b870e363f7dafcbeb807b463269a75/api/v2/openapi.yaml#L327-L347
+    matchers: List[Matcher]
+    startsAt: datetime
+    endsAt: datetime
+    createdBy: str
+    comment: str
